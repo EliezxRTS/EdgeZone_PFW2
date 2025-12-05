@@ -1,0 +1,45 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container">
+
+  {{#if partidas.length}}
+    <div class="list-group">
+
+      {{#each partidas}}
+        <div class="list-group-item mb-2 recent-partida">
+
+          <div class="d-flex justify-content-between align-items-center">
+            <h5 class="mb-1">{{nombre_juego}}</h5>
+            <small>{{formatDate fecha_jugada}}</small>
+          </div>
+
+          {{#if nombre_partida}}
+            <p class="mb-1">
+              <strong>Partida:</strong> {{nombre_partida}}
+            </p>
+          {{/if}}
+
+          <p class="mb-1">
+            <strong>Jugador:</strong> {{jugador}}
+          </p>
+
+          <p class="mb-1">
+            <strong>Resultado:</strong> {{resultado}}
+          </p>
+
+          {{#if descripcion}}
+            <p class="mb-1">
+              <strong>Descripción:</strong> {{descripcion}}
+            </p>
+          {{/if}}
+
+        </div>
+      {{/each}}
+
+    </div>
+
+  {{else}}
+    <p>No hay partidas registradas todavía.</p>
+  {{/if}}
+
+</div>

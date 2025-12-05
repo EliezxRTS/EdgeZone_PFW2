@@ -1,0 +1,124 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container">
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+
+      <h5 class="mb-3">
+        Historial de partidas de <strong>{{user.username}}</strong>
+      </h5>
+
+      {{#if partidas.length}}
+
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>Juego</th>
+              <th>Partida</th>
+              <th>Resultado</th>
+              <th>Descripción</th>
+              <th>Fecha jugada</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {{#each partidas}}
+              <tr>
+                <td>{{nombre_juego}}</td>
+                <td>{{#if nombre_partida}}{{nombre_partida}}{{else}}—{{/if}}</td>
+                <td>{{resultado}}</td>
+                <td>{{#if descripcion}}{{descripcion}}{{else}}—{{/if}}</td>
+                <td>{{formatDate fecha_jugada}}</td>
+
+                <td>
+                  <a href="/partidas/editar/{{id}}" class="btn btn-sm btn-warning me-1">
+                    Editar
+                  </a>
+
+                  <button 
+                    class="btn btn-sm btn-danger btn-borrar-partida"
+                    data-id="{{id}}"
+                    data-juego="{{nombre_juego}}"
+                  >
+                    Borrar
+                  </button>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+      {{else}}
+        <p>
+          Todavía no tienes partidas registradas.  
+        </p>
+      {{/if}}
+
+    </div>
+  </div>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- Modal para borrar partida -->
+<!-- ========================= -->
+
+<div class="modal fade" id="modalBorrarPartida" tabindex="-1" aria-labelledby="modalBorrarPartidaLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="modalBorrarPartidaLabel">Eliminar partida</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body">
+        <p id="textoConfirmacion">¿Seguro que quieres borrar esta partida?</p>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          Cancelar
+        </button>
+
+        <form id="formBorrarPartida" method="post">
+          <button type="submit" class="btn btn-danger">Borrar</button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================= -->
+<!-- Script para activar el modal -->
+<!-- ============================= -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const modal = new bootstrap.Modal(document.getElementById("modalBorrarPartida"));
+  const formBorrar = document.getElementById("formBorrarPartida");
+  const texto = document.getElementById("textoConfirmacion");
+
+  document.querySelectorAll(".btn-borrar-partida").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-id");
+      const juego = btn.getAttribute("data-juego");
+
+      texto.textContent = `¿Deseas borrar la partida de "${juego}"?`;
+
+      formBorrar.action = `/partidas/borrar/${id}`;
+
+      modal.show();
+    });
+
+  });
+
+});
+</script>

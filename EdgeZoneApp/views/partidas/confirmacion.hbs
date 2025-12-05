@@ -1,0 +1,37 @@
+<h3>Partida registrada</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <div class="card" style="width:400px">
+
+                <div class="card-body">
+                    <h4 class="card-title">{{partida.nombre_juego}}</h4>
+
+                    {{#if partida.nombre_partida}}
+                        <p class="card-text"><strong>Partida:</strong> {{partida.nombre_partida}}</p>
+                    {{/if}}
+
+                    {{#if partida.resultado}}
+                        <p class="card-text"><strong>Resultado:</strong> {{partida.resultado}}</p>
+                    {{/if}}
+
+                    {{#if partida.descripcion}}
+                        <p class="card-text"><strong>Descripción:</strong> {{partida.descripcion}}</p>
+                    {{/if}}
+
+                    <p class="card-text">
+                        <strong>Jugador:</strong> {{user.username}}
+                    </p>
+
+                    <a href="/partidas/mis-partidas" class="btn btn-primary">
+                        Ver mis partidas
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

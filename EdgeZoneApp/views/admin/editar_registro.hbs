@@ -1,0 +1,46 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container mt-4">
+  <form action="/admin/editar/{{tabla}}/{{registro.id}}" method="post">
+    {{#each registro}}
+      {{#unless (eq @key 'id')}}
+        <div class="mb-3">
+          <label for="{{@key}}" class="form-label">{{@key}}</label>
+
+          {{!-- Si es campo de descripción, usar textarea --}}
+          {{#if (eq @key "descripcion")}}
+            <textarea 
+              class="form-control" 
+              id="{{@key}}" 
+              name="{{@key}}" 
+              rows="3"
+            >{{this}}</textarea>
+
+          {{!-- Si es fecha_jugada, usar datetime-local --}}
+          {{else if (eq @key "fecha_jugada")}}
+            <input 
+              type="datetime-local" 
+              class="form-control" 
+              id="{{@key}}" 
+              name="{{@key}}" 
+              value="{{formatDatetimeLocal this}}"
+            >
+
+          {{!-- Para otros campos de texto --}}
+          {{else}}
+            <input 
+              type="text" 
+              class="form-control" 
+              id="{{@key}}" 
+              name="{{@key}}" 
+              value="{{this}}"
+            >
+          {{/if}}
+        </div>
+      {{/unless}}
+    {{/each}}
+
+    <button type="submit" class="btn btn-warning">Actualizar</button>
+    <a href="/admin?tabla={{tabla}}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>

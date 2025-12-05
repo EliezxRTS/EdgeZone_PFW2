@@ -1,0 +1,86 @@
+<h1 class="text-center">{{title}}</h1>
+
+{{!-- views/home.hbs --}}
+<h2 class="mt-5 mb-3">Últimas Partidas</h2>
+
+<div class="container mt-4">
+  <div id="home-partidas-section">
+  <div class="row">
+    <!-- Lista de partidas -->
+    <div class="col-4">
+      <div class="list-group" id="list-partidas-list" role="tablist">
+        {{#each partidas}}
+          <a class="list-group-item list-group-item-action {{#if @first}}active{{/if}}"
+             id="list-{{id}}-list"
+             data-bs-toggle="list"
+             href="#list-{{id}}"
+             role="tab"
+             aria-controls="list-{{id}}">
+            {{nombre_juego}}
+            {{#if nombre_partida}} - {{nombre_partida}}{{/if}}
+          </a>
+        {{/each}}
+      </div>
+    </div>
+
+    <!-- Detalles de la partida -->
+    <div class="col-8">
+      <div class="tab-content" id="list-partidas-content">
+        {{#each partidas}}
+          <div class="tab-pane fade {{#if @first}}show active{{/if}}"
+               id="list-{{id}}"
+               role="tabpanel"
+               aria-labelledby="list-{{id}}-list">
+            <h5>{{nombre_juego}}</h5>
+            {{#if nombre_partida}}
+              <p><strong>Partida / Sesión:</strong> {{nombre_partida}}</p>
+            {{/if}}
+            <p><strong>Jugador:</strong> {{jugador}}</p>
+            <p><strong>Resultado:</strong> {{resultado}}</p>
+            <p><strong>Descripción:</strong> {{descripcion}}</p>
+            <p><strong>Fecha:</strong> {{formatDate fecha_jugada}}</p>
+          </div>
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<h2 class="mt-5 mb-3">Últimas Miniaturas</h2>
+
+<div id="miniaturasCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="10000">
+  <div class="carousel-indicators">
+    {{#each miniaturas}}
+      <button type="button"
+              data-bs-target="#miniaturasCarousel"
+              data-bs-slide-to="{{@index}}"
+              class="{{#if @first}}active{{/if}}"
+              aria-current="{{#if @first}}true{{/if}}"
+              aria-label="Slide {{addOne @index}}"></button>
+    {{/each}}
+  </div>
+
+  <div class="carousel-inner">
+    {{#each miniaturas}}
+      <div class="carousel-item {{#if @first}}active{{/if}}">
+        <img src="{{#if imagen_url}}{{imagen_url}}{{else}}/public/images/placeholder.jpg{{/if}}" 
+          class="d-block w-100 carousel-img-limit" 
+          alt="{{nombre}}">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+          <h5>{{nombre}}</h5>
+          <p>Subida por: {{autor}}</p>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <button class="carousel-control-prev" type="button" data-bs-target="#miniaturasCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#miniaturasCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>

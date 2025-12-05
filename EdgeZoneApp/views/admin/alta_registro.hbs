@@ -1,0 +1,23 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container mt-4">
+  <form action="/admin/alta/{{tabla}}" method="post">
+    {{#each campos}}
+      <div class="mb-3">
+        <label for="{{this}}" class="form-label">{{this}}</label>
+
+        {{!-- Input dinámico según tipo: puedes mejorar si quieres textarea para 'text' --}}
+        <input 
+          type="text" 
+          class="form-control" 
+          id="{{this}}" 
+          name="{{this}}" 
+          placeholder="Ingrese {{this}}" 
+        >
+      </div>
+    {{/each}}
+
+    <button type="submit" class="btn btn-primary">Guardar</button>
+    <a href="/admin/tabla/{{tabla}}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>

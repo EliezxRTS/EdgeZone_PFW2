@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link 
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" 
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  </head>
+
+  <body>
+    <div class="page-wrapper d-flex flex-column min-vh-100">
+
+      <header>
+        <nav class="navbar navbar-dark fixed-top">
+          <div class="container-fluid d-flex justify-content-between align-items-center">
+            
+            <!-- Botón hamburguesa -->
+            <button 
+              class="navbar-toggler me-2" 
+              type="button" 
+              data-bs-toggle="offcanvas" 
+              data-bs-target="#offcanvasNav" 
+              aria-controls="offcanvasNav"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Logo -->
+            <a class="navbar-brand me-auto" href="/">
+              <img src="/images/logo_b.png" alt="EdgeZone Logo" height="40">
+            </a>
+
+            <!-- Usuario / Login -->
+            <div class="d-flex ms-auto">
+              {{#if user}}
+                <div class="dropdown">
+                  <a class="btn btn-outline-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    {{user.username}}
+                  </a>
+                  <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-end">
+                    <li><a class="dropdown-item" href="/cuenta">Mi Cuenta</a></li>
+                    {{#if (eq user.role 'admin')}}
+                      <li><a class="dropdown-item" href="/admin">Panel de Administrador</a></li>
+                    {{/if}}
+                    <li><a class="dropdown-item" href="/auth/logout">Cerrar sesión</a></li>
+                  </ul>
+                </div>
+              {{else}}
+                <div class="d-flex">
+                  <a href="/auth/login" class="btn btn-outline-light me-2">Iniciar sesión</a>
+                  <a href="/auth/register" class="btn btn-outline-light">Registrarse</a>
+                </div>
+              {{/if}}
+            </div>
+
+            <!-- Offcanvas -->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNav" aria-labelledby="offcanvasNavLabel">
+              <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavLabel">Menú</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+              </div>
+              <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-start flex-grow-1 pe-3">
+                  <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Partidas</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/partidas/recientes">Ver recientes</a></li>
+                      <li><a class="dropdown-item" href="/partidas/mis-partidas">Ver mis partidas</a></li>
+                      <li><a class="dropdown-item" href="/partidas/alta_partidas">Registrar partida</a></li>
+                    </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Galería</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="/galeria">Explorar galería</a></li>
+                      <li><a class="dropdown-item" href="/galeria/mi_galeria">Ver mi galería</a></li>
+                      <li><a class="dropdown-item" href="/galeria/alta_galeria">Subir miniatura</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </nav>
+      </header>
+
+      <!-- Separación navbar -->
+      <div style="padding-top: 70px;"></div>
+
+      <main class="flex-grow-1">
+        {{{body}}}
+      </main>
+
+      <br><br><br><br><br>
+
+      <footer class="mt-auto py-4 text-white">
+        <div class="container-fluid" style="background-color: #070F38;">
+          <div class="row align-items-center">
+
+            <!-- Logo y copyright -->
+            <div class="col-md-4 mb-3 text-center text-md-start">
+              <a href="/"><img src="/images/logo_b.png" alt="EdgeZone Logo" height="50"></a>
+              <p class="small mt-2 mb-0 text-warning-opacity">
+                © 2025 EdgeZone. Todos los derechos reservados.<br>
+                Comunidad gamer y coleccionistas al máximo.
+              </p>
+            </div>
+
+            <!-- Navegación rápida -->
+            <div class="col-md-4 mb-3 text-center text-md-start">
+              <h6 style="color: #F0D407;">Navegación Rápida</h6>
+              <ul class="list-unstyled small mb-0">
+                <li><a href="/" class="text-warning-opacity text-decoration-none">Inicio</a></li>
+                <li><a href="/partidas/recientes" class="text-warning-opacity text-decoration-none">Partidas</a></li>
+                <li><a href="/galeria" class="text-warning-opacity text-decoration-none">Galería</a></li>
+                <li><a href="/cuenta" class="text-warning-opacity text-decoration-none">Mi Cuenta</a></li>
+              </ul>
+            </div>
+
+            <!-- Redes sociales -->
+            <div class="col-md-4 mb-3 text-center text-md-start">
+              <h6 style="color: #F0D407;">Conéctate</h6>
+              <div class="d-flex justify-content-center justify-content-md-start">
+                <a href="#" class="btn btn-sm btn-outline-warning me-2">Instagram</a>
+                <a href="#" class="btn btn-sm btn-outline-warning me-2">Facebook</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="row">
+            <div class="col-12 text-center pt-3 border-top border-secondary">
+              <p class="small text-warning-opacity mb-0">Proyecto Final de Programación Web 2 | FES Aragón UNAM</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+    <script src="/javascripts/api.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

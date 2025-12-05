@@ -1,0 +1,18 @@
+<div class="container mt-4">
+    <h1 class="text-center">{{title}}</h1>
+
+    <div class="card mt-3">
+        <div class="card-body">
+
+            <p><strong>Usuario:</strong> {{user.username}}</p>
+
+            <p><strong>Email:</strong> {{user.email}}</p>
+
+            <p><strong>Cuenta creada:</strong> {{formatDate user.created_at}}</p>
+
+            <a href="/cuenta/actualizar" class="btn btn-primary mt-3">
+                Actualizar cuenta
+            </a>
+        </div>
+    </div>
+</div>

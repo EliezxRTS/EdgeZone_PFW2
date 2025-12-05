@@ -1,0 +1,338 @@
+body {
+  padding: 50px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Fuente más sólida y legible */
+  font-size: 16px;          /* Un poco más grande que antes */
+  font-weight: 600;         /* Semi-bold para mayor legibilidad */
+  
+  background-image: url('/images/bckg.jpg');
+  background-size: cover;          /* La imagen cubre la pantalla sin deformarse */
+  background-repeat: no-repeat;     /* No se repite como mosaico */
+  background-attachment: fixed;     /* Efecto de fondo “quieto” */
+  background-position: center;      /* Centrada */
+  color: #F0D407;                  /* Color de texto predeterminado */
+}
+
+.carousel-img-limit {
+  height: 300px;     /* O el tamaño que prefieras */
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .carousel-img-limit {
+    height: 380px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .carousel-img-limit {
+    height: 450px;
+  }
+}
+
+/* Animación de resaltado con rebote */
+@keyframes highlightBounce {
+  0% { transform: scale(0.9) translateY(-5px); opacity: 0.7; }
+  30% { transform: scale(1.1) translateY(0); opacity: 1; }
+  50% { transform: scale(1.05) translateY(-3px); }
+  70% { transform: scale(1.02) translateY(0); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.carousel-item img.animate-highlight {
+  animation: highlightBounce 0.8s ease forwards;
+}
+
+/* Enlaces */
+a {
+  color: #07D5F0; /* cyan brillante */
+}
+
+a:hover {
+  color: #F0077F; /* hover fucsia */
+}
+
+/* Encabezados */
+h1 {
+  color: #F0D407; /* amarillo */
+}
+
+h2 {
+  color: #F0077F; /* fucsia */
+}
+
+h3 {
+  color: #07D5F0; /* cyan */
+}
+
+h4 {
+  color: #F0D407; /* amarillo */
+}
+
+h5 {
+  color: #F0077F; /* fucsia */
+}
+
+h6 {
+  color: #07D5F0; /* cyan */
+}
+
+/* Párrafos */
+p {
+  color: #F0D407; /* amarillo */
+}
+
+/* Tarjetas y componentes */
+.card, .miniboxStandard {
+  background-color: #0A1B4D; /* azul oscuro para tarjetas */
+  color: #F0D407; /* color del texto dentro de las tarjetas */
+}
+
+.navbar, .offcanvas {
+  background-color: #000000; /* navbar y offcanvas con fondo oscuro */
+}
+
+.carousel-caption {
+  background-color: rgba(10, 27, 77, 0.7); /* fondo semitransparente para carrusel */
+}
+
+.card-header {
+  background-color: #070F38; /* azul más profundo para headers de tarjetas */
+  color: #F0D407;           /* texto amarillo */
+  font-weight: 700;          /* negrita */
+  font-size: 1.25rem;        /* un poco más grande que el tamaño base */
+}
+
+.card-footer {
+  background-color: #0A1B4D;
+  color: #F0D407;
+}
+
+.list-group-item.active {
+  background-color: #F0077F;
+  border-color: #F0077F;
+  color: #FFFFFF;
+}
+
+.nav-link {
+  color: #07D5F0;
+}
+
+.nav-link:hover {
+  color: #F0D407;
+}
+
+/* Botones */
+.btn-primary {
+  background-color: #F0D407;
+  color: #070F38;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #F7E22C; /* un amarillo más claro al pasar el mouse */
+}
+
+.btn-warning {
+  background-color: #F0077F;
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-warning:hover {
+  background-color: #FF3399;
+}
+
+.btn-danger {
+  background-color: #07D5F0;
+  color: #070F38;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #3DE0F5;
+}
+
+/* Dropdown de la navbar */
+.navbar .dropdown-menu {
+  background-color: #070F38; /* azul oscuro armonioso */
+  border: none;               /* sin borde por defecto */
+}
+
+.navbar .dropdown-item {
+  color: #F0D407;             /* amarillo de la triada */
+  font-weight: 600;            /* un poco de negrita */
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.navbar .dropdown-item:hover,
+.navbar .dropdown-item:focus {
+  background-color: #07D5F0;  /* azul claro de la triada al pasar el mouse */
+  color: #070F38;              /* texto oscuro sobre azul claro */
+}
+
+/* Mantener el toggle del dropdown consistente */
+.navbar .dropdown-toggle::after {
+  border-top-color: #F0D407; /* la flecha en amarillo */
+}
+
+/* Contador de caracteres en inputs y textareas */
+.input-counter-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.input-counter-wrapper input,
+.input-counter-wrapper textarea {
+  padding-right: 40px; /* espacio para el contador dentro del input */
+}
+
+.input-counter {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #ccc;
+  pointer-events: none; /* que no interfiera al escribir */
+}
+
+/* Fondo para la sección de Últimas Partidas en Home */
+#home-partidas-section {
+  background-color: rgba(7, 15, 56, 0.85); /* azul profundo semitransparente */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  color: #F0D407; /* texto amarillo para contraste */
+}
+
+/* Opcional: mantener la tabla con un fondo más oscuro para resaltar */
+#home-partidas-section .table {
+  background-color: rgba(10, 27, 77, 0.9);
+  color: #F0D407;
+}
+
+#home-partidas-section .table th,
+#home-partidas-section .table td {
+  vertical-align: middle;
+}
+
+/* Partidas recientes - lista */
+.recent-partida {
+  background-color: #0A1B4D; /* azul oscuro de tarjetas */
+  color: #F0D407;            /* amarillo de la triada */
+  border: 1px solid #07D5F0; /* borde sutil cyan */
+  border-radius: 5px;
+  padding: 15px;
+}
+
+.recent-partida h5 {
+  color: #F0077F; /* fucsia para título de juego */
+  margin-bottom: 0;
+}
+
+.recent-partida p,
+.recent-partida small {
+  color: #F0D407; /* amarillo para resto de textos */
+  margin-bottom: 5px;
+}
+
+/* DROPZONE */
+#dropzone {
+  min-height: 200px;                 /* altura para que se vea */
+  border: 3px dashed #07D5F0;        /* cyan brillante */
+  background-color: rgba(7, 15, 56, 0.55); /* azul translúcido */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Cuando está activo (dragover) */
+#dropzone.active {
+  background-color: rgba(240, 7, 127, 0.35); /* fucsia sutil */
+  border-color: #F0D407;                     /* amarillo */
+}
+
+#dropzone .card-header {
+  font-size: 2.5rem;  /* doble del tamaño base que tenías antes */
+  font-weight: 700;   /* mantener negrita */
+  color: #F0D407;     /* amarillo */
+  background-color: #070F38; /* azul más profundo */
+  padding: 1rem 1.5rem; /* más espacio interno para la tarjeta grande */
+  text-align: center;
+}
+
+#dropzone .miniboxStandard {
+  transform: scale(1);   /* no aplicar exceso de escala adicional */
+  width: 100%;           /* ocupar todo el ancho del dropzone */
+  max-width: 600px;      /* limitar tamaño máximo */
+  margin: 0 auto;        /* centrar */
+}
+
+.dropzone-placeholder {
+  color: #F0D407;            /* amarillo triada */
+  font-size: 1.4rem;         /* un poco grande */
+  font-weight: 600;          /* sólido y legible */
+  text-align: center;
+  opacity: 0.6;
+  pointer-events: none;      /* no afecta drag */
+  transition: opacity 0.3s ease;
+}
+
+.dropzone.active .dropzone-placeholder {
+  opacity: 0;                /* se desvanece cuando entra algo */
+}
+
+/* TARJETAS DRAGGABLES */
+.draggable-card {
+  cursor: grab;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.draggable-card:active {
+  cursor: grabbing;
+  transform: scale(1.03);
+}
+
+/* TARJETA AMPLIADA EN EL DROPZONE */
+.card-expanded {
+  transform: scale(0.9);
+  font-size: 2em;
+  line-height: 1.3em;
+  transition: transform 0.4s ease;
+  z-index: 5;
+}
+
+/* Fade-in suave cuando aparece dentro del dropzone */
+.dropzone-received {
+  animation: dropzoneFade 0.45s ease forwards;
+}
+
+@keyframes dropzoneFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main.flex-grow-1 {
+  flex-grow: 1;
+}
+
+footer {
+  width: 100%;
+  background-color: #070F38;
+  color: #F0D407;
+  padding: 1.5rem 0;
+}

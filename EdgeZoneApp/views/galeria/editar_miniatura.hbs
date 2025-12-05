@@ -1,0 +1,65 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container mt-4">
+
+  {{#if mensaje}}
+    <div class="alert alert-info text-center">{{mensaje}}</div>
+  {{/if}}
+
+  <form id="formEditarMiniatura" method="post" action="/galeria/editar/{{miniatura.id}}">
+    
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre de la miniatura:</label>
+      <input type="text" class="form-control" id="nombre" name="nombre" value="{{miniatura.nombre}}" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="coleccion" class="form-label">Colección (opcional):</label>
+      <input type="text" class="form-control" id="coleccion" name="coleccion" value="{{miniatura.coleccion}}">
+    </div>
+
+    <div class="mb-3">
+      <label for="descripcion" class="form-label">Descripción (opcional):</label>
+      <textarea class="form-control" id="descripcion" name="descripcion">{{miniatura.descripcion}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="imagen_url" class="form-label">URL de la imagen (opcional):</label>
+      <input type="text" class="form-control" id="imagen_url" name="imagen_url" value="{{miniatura.imagen_url}}">
+    </div>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
+      Actualizar miniatura
+    </button>
+  </form>
+
+</div>
+
+<!-- Modal de confirmación -->
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmar actualización</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      
+      <div class="modal-body">
+        ¿Estás seguro de que deseas actualizar esta miniatura?
+      </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="confirmUpdateBtn">Sí, actualizar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('confirmUpdateBtn').addEventListener('click', function() {
+    document.getElementById('formEditarMiniatura').submit();
+  });
+</script>

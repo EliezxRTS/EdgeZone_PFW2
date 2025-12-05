@@ -1,0 +1,45 @@
+<h3>Miniatura registrada</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+
+        <div class="col-md-4">
+            <div class="card" style="width: 400px">
+
+                <!-- Imagen -->
+                <div class="miniImage card-img-top text-center my-2">
+                    <a href="{{#if miniatura.imagen_url}}{{miniatura.imagen_url}}{{else}}/images/placeholder.png{{/if}}" target="_blank">
+                        <img src="{{#if miniatura.imagen_url}}{{miniatura.imagen_url}}{{else}}/images/placeholder.png{{/if}}" 
+                             alt="{{miniatura.nombre}}" class="img-fluid rounded">
+                    </a>
+                </div>
+
+                <div class="card-body text-center">
+                    <!-- Nombre de la miniatura -->
+                    <h4 class="card-title">{{miniatura.nombre}}</h4>
+
+                    <!-- Colección opcional -->
+                    {{#if miniatura.coleccion}}
+                        <p class="card-text"><strong>Colección:</strong> {{miniatura.coleccion}}</p>
+                    {{/if}}
+
+                    <!-- Descripción opcional -->
+                    {{#if miniatura.descripcion}}
+                        <p class="card-text"><strong>Descripción:</strong> {{miniatura.descripcion}}</p>
+                    {{/if}}
+
+                    <!-- Autor -->
+                    <p class="card-text">
+                        <strong>Subida por:</strong> {{user.username}}
+                    </p>
+
+                    <a href="/galeria/mi_galeria" class="btn btn-primary mt-2">
+                        Ver mi galería
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

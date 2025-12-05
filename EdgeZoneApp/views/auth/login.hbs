@@ -1,0 +1,29 @@
+{{!-- Layout general --}}
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Iniciar sesión</h2>
+
+  {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+  {{/if}}
+
+  {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+  {{/if}}
+
+  <form method="POST" action="/auth/login">
+    <div class="mb-3">
+      <label for="email" class="form-label">Correo</label>
+      <input type="email" class="form-control" id="email" name="email" placeholder="correo@ejemplo.com" required>
+    </div>
+
+    <div class="mb-3">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" required>
+    </div>
+
+    <button type="submit" class="btn btn-success">Iniciar sesión</button>
+    <a href="/auth/register" class="btn btn-link">¿No tienes cuenta? Regístrate</a>
+  </form>
+</div>

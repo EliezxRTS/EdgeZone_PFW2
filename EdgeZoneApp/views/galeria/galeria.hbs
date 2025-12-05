@@ -1,0 +1,83 @@
+<h1 class="text-center">{{title}}</h1>
+
+<!-- DROPZONE SUPERIOR -->
+<div id="dropzone" class="dropzone mb-4">
+  <div class="dropzone-placeholder">
+    Suelta una tarjeta aquí
+  </div>
+</div>
+
+<div class="galleryContainer row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3 mt-3">
+  {{#each miniaturas}}
+    <div class="col">
+      <div class="miniboxStandard card h-100 border rounded text-center draggable-card"
+        draggable="true"
+        data-id="{{id}}">
+        
+        <!-- Nombre de la miniatura -->
+        <div class="miniName card-header">
+          <div class="miniNameNormal">{{nombre}}</div>
+        </div>
+
+        <!-- Imagen -->
+        <div class="miniImage card-img-top my-2">
+          <a href="{{#if imagen_url}}{{imagen_url}}{{else}}/images/placeholder.png{{/if}}" target="_blank">
+            <img src="{{#if imagen_url}}{{imagen_url}}{{else}}/images/placeholder.png{{/if}}" 
+                 alt="{{nombre}}" class="img-fluid rounded">
+          </a>
+        </div>
+
+        <!-- Colección (opcional) -->
+        {{#if coleccion}}
+        <div class="miniColection card-body">
+          <p class="mb-1">{{coleccion}}</p>
+        </div>
+        {{/if}}
+
+        <!-- Descripción (opcional) -->
+        {{#if descripcion}}
+        <div class="miniDescription card-body">
+          <p class="mb-1">{{descripcion}}</p>
+        </div>
+        {{/if}}
+
+        <!-- Autor -->
+        <div class="miniAuthor card-body">
+          <p class="mb-1">Subida por: <strong>{{autor}}</strong></p>
+        </div>
+
+        <!-- Fecha subida -->
+        <div class="miniDate card-footer">
+          {{formatDate fecha_subida}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+{{!-- Paginación simple --}}
+<nav aria-label="Page navigation example" class="mt-4">
+  <ul class="pagination justify-content-center">
+    {{#if (gt currentPage 1)}}
+      <li class="page-item">
+        <a class="page-link" href="?page={{decrement currentPage}}" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+    {{/if}}
+
+    {{#each (range 1 totalPages)}}
+      <li class="page-item {{#if (eq this ../currentPage)}}active{{/if}}">
+        <a class="page-link" href="?page={{this}}">{{this}}</a>
+      </li>
+    {{/each}}
+
+    {{#if (lt currentPage totalPages)}}
+      <li class="page-item">
+        <a class="page-link" href="?page={{increment currentPage}}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+    {{/if}}
+  </ul>
+</nav>

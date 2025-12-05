@@ -1,0 +1,48 @@
+<h1 class="text-center">{{title}}</h1>
+
+<div class="container mt-4">
+
+  <!-- Selector de tabla -->
+  <div class="mb-3">
+    <form method="get" action="/admin">
+      <label for="tablaSelect" class="form-label">Selecciona una tabla:</label>
+      <select id="tablaSelect" name="tabla" class="form-select" onchange="this.form.submit()">
+        <option value="users" {{#if (eq tabla 'users')}}selected{{/if}}>Users</option>
+        <option value="partidas" {{#if (eq tabla 'partidas')}}selected{{/if}}>Partidas</option>
+        <option value="miniaturas" {{#if (eq tabla 'miniaturas')}}selected{{/if}}>Miniaturas</option>
+      </select>
+    </form>
+  </div>
+
+  {{#if tabla}}
+    <table class="table table-hover align-middle table-sm">
+      <thead class="table-dark">
+        <tr>
+          {{#each (keys registros.[0])}}
+            <th>{{this}}</th>
+          {{/each}}
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each registros}}
+          <tr>
+            {{#each this}}
+              <td>{{this}}</td>
+            {{/each}}
+            <td>
+              <a href="/admin/editar/{{../tabla}}/{{id}}" class="btn btn-sm btn-warning">Editar</a>
+              <form action="/admin/borrar/{{../tabla}}/{{id}}" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger">Borrar</button>
+              </form>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <a href="/admin/alta/{{tabla}}" class="btn btn-primary">Nuevo registro</a>
+  {{else}}
+    <p>Seleccione una tabla.</p>
+  {{/if}}
+
+</div>
